@@ -1,4 +1,4 @@
-# testing if all binding sites are the same
+# printing all binding sequences for comparison
 
 
 f0 = open("dna_5000_100_0_[].fa",'r')
@@ -19,9 +19,6 @@ for line in f1:
         else:
             freq_matrix[k] +=1
             print(freq_matrix[k])
-        #print(k)
 for k in freq_matrix:
     print(k)
     print(freq_matrix[k])
-
-#conclusion not all proteins are the same
