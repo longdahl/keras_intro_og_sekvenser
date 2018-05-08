@@ -52,20 +52,24 @@ for string_conv in intermediate_output:
             c += 1
     string_count += 1
 
-pwm = np.zeros((4,12))
+pbm = np.zeros((4,12))
+
+
+#saving pfm
+#np.savetxt("pfm.csv",pfm, delimiter=",")
 
 #converting position frequency matrix to position weight matrix
 for col in range(0,12):
     sum = pfm[0][col] + pfm[1][col] + pfm[2][col] + pfm[3][col]
 
-    pwm[0][col] = pfm[0][col] / sum
-    pwm[1][col] = pfm[1][col] / sum
-    pwm[2][col] = pfm[2][col] / sum
-    pwm[3][col] = pfm[3][col] / sum
+    pbm[0][col] = pfm[0][col] / sum
+    pbm[1][col] = pfm[1][col] / sum
+    pbm[2][col] = pfm[2][col] / sum
+    pbm[3][col] = pfm[3][col] / sum
 
-pwm_rounded = np.round_(pwm,2)
+pbm_rounded = np.round_(pbm,2)
 
-print(pwm_rounded)
+print(pbm_rounded)
 
 #saving model (already saved)
-#np.savetxt("pwm.csv",pwm, delimiter=",")
+#np.savetxt("pwm.csv",pbm, delimiter=",")

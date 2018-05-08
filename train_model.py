@@ -103,7 +103,6 @@ class LossHistory(Callback):
 
 model = Sequential()
 model.add(Convolution2D(64, kernel_size=(12, 4), activation='relu', input_shape=(100,4,1)))
-#model.add(Reshape((89,32,1),input_shape=(89,1,32)))
 model.add(MaxPooling2D(pool_size=(89,1)))
 model.add(Dense(32,activation='relu'))
 model.add(Dropout(0.15))
