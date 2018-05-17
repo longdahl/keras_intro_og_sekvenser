@@ -6,6 +6,8 @@ from keras.layers import MaxPooling2D, Dropout
 from keras.utils import np_utils
 from tensorflow.contrib.learn.python.learn.estimators._sklearn import train_test_split
 from keras.callbacks import Callback, ModelCheckpoint
+import matplotlib.pyplot as plt
+
 
 
 #Choose the data to train on
@@ -124,7 +126,23 @@ checkpointer = ModelCheckpoint(filepath='tmp\weights.hdf5', verbose=1, save_best
 model.summary()
 
 #training our model
-model.fit(data, labels,shuffle=True,epochs=10, verbose=2, batch_size=20,callbacks=[checkpointer], validation_split=0.1764) #validation split results in 70/15/15 train/validation/test
+history = model.fit(data, labels,shuffle=True,epochs=10, verbose=2, batch_size=20,callbacks=[checkpointer], validation_split=0.1764) #validation split results in 70/15/15 train/validation/test
+
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc = 'upper left')
+plt.show()
+
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'test'], loc = 'upper left')
+plt.show()
 
 #saving our model for later use
 model.save(model_choice)
